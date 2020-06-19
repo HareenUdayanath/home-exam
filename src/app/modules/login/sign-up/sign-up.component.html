@@ -1,0 +1,36 @@
+<div class="main-div">
+  <mat-card class="example-card">
+
+    <mat-card-title>Sign-up</mat-card-title>
+
+    <mat-card-content>
+      <mat-form-field>
+        <input
+          required
+          [(ngModel)]="user.name"
+          matInput
+          placeholder="username">
+      </mat-form-field>
+      <br/>
+
+      <mat-form-field>
+        <input
+          required
+          [(ngModel)]="user.password"
+          matInput
+          placeholder="password">
+      </mat-form-field>
+      <br/>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        (click)="onLogin()"
+        mat-raised-button
+        color="primary">Sign-up
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card class="name-card">
+    <mat-card-title *ngIf="user">{{user?.name}}</mat-card-title>
+  </mat-card>
+</div>
