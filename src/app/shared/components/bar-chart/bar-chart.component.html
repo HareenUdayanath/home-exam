@@ -1,0 +1,20 @@
+<div class="bar-chart-row-container" #container>
+  <ng-container *ngFor="let element of elements">
+    <div appBoxElement
+         [height]="height"
+         [width]="element.width+'px'"
+         [color]="element.color"></div>
+  </ng-container>
+</div>
+<br><br>
+<div class="bar-chart-identifier-container">
+  <ng-container *ngFor="let element of elements">
+    <div>
+      <div appBoxElement
+           [height]="idDimension"
+           [width]="idDimension"
+           [color]="element.color"></div>
+      <div>{{element.title}} ({{element.percentage}}%)</div>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,14 @@
+.bar-chart-row-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.bar-chart-identifier-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.id-element{
+  margin: 10px 10px 10px 10px;
+}
