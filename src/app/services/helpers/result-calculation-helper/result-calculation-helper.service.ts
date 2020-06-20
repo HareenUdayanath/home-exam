@@ -21,7 +21,7 @@ export class ResultCalculationHelperService {
     }
     return activity.attempts.weeks.map((weak, index) => {
       const attemptResult = new AttemptResultModel();
-      attemptResult.date = weak;
+      attemptResult.date = this.getDate(weak);
       attemptResult.result = activity.attempts.values[index];
       attemptResult.content = activity.content;
       attemptResult.student = activity.student;
@@ -91,6 +91,12 @@ export class ResultCalculationHelperService {
       });
     }
     return summary;
+  }
+
+  private getDate(date: string) {
+    const tempArr = date.split('/');
+    tempArr[2] = '20' + tempArr[2];
+    return tempArr.join('/');
   }
 
 }

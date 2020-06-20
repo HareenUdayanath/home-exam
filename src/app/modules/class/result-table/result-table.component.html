@@ -1,16 +1,16 @@
 <mat-table [dataSource]="results" class="mat-elevation-z8">
   <!-- Date Column -->
   <ng-container matColumnDef="date">
-    <mat-header-cell *matHeaderCellDef style="background-color: #E8E8E8">
+    <mat-header-cell *matHeaderCellDef class="table-column">
       DATE COMPLETED
       <mat-icon>keyboard_arrow_down</mat-icon>
     </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.date|dateToString}} </mat-cell>
   </ng-container>
 
   <!-- Content Column -->
   <ng-container matColumnDef="content">
-    <mat-header-cell *matHeaderCellDef style="background-color: #E8E8E8">
+    <mat-header-cell *matHeaderCellDef class="table-column">
       CONTENT
     </mat-header-cell>
     <mat-cell *matCellDef="let element">
@@ -20,7 +20,7 @@
 
   <!-- Type Column -->
   <ng-container matColumnDef="type">
-    <mat-header-cell *matHeaderCellDef style="background-color: #E8E8E8">
+    <mat-header-cell *matHeaderCellDef class="table-column">
       TYPE
       <mat-icon>keyboard_arrow_down</mat-icon>
     </mat-header-cell>
@@ -31,7 +31,7 @@
 
   <!-- Skill Column -->
   <ng-container matColumnDef="skill">
-    <mat-header-cell *matHeaderCellDef style="background-color: #E8E8E8">
+    <mat-header-cell *matHeaderCellDef class="table-column">
       SKILL
     </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.skill}} </mat-cell>
@@ -39,7 +39,7 @@
 
   <!-- Result Column -->
   <ng-container matColumnDef="result">
-    <mat-header-cell *matHeaderCellDef style="background-color: #E8E8E8">
+    <mat-header-cell *matHeaderCellDef class="table-column">
       RESULT
       <mat-icon>keyboard_arrow_down</mat-icon>
     </mat-header-cell>
@@ -50,7 +50,7 @@
 
   <!-- Time Column -->
   <ng-container matColumnDef="time">
-    <mat-header-cell *matHeaderCellDef style="background-color: #E8E8E8">
+    <mat-header-cell *matHeaderCellDef class="table-column">
       TIME_SPENT
       <mat-icon>keyboard_arrow_down</mat-icon>
     </mat-header-cell>

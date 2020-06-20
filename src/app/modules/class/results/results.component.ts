@@ -6,6 +6,7 @@ import { BarChartElement } from '../../../shared/components/bar-chart/bar-chart-
 import { ActivityModel } from '../../../shared/models/class/activity.model';
 import { AttemptResultModel } from '../../../shared/models/class/attempt-result.model';
 import { ClassModel } from '../../../shared/models/class/class.model';
+import { Constant } from '../../../shared/models/constant';
 
 @Component({
   selector: 'app-results',
@@ -15,7 +16,7 @@ import { ClassModel } from '../../../shared/models/class/class.model';
 })
 export class ResultsComponent implements OnInit {
 
-  monthsString = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+  monthsString = Constant.MONTHS_STRINGS;
 
   classes: Array<ClassModel>;
   attemptResults: Array<AttemptResultModel>;

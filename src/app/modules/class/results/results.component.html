@@ -78,7 +78,7 @@
   </div>
   <div class="result-content">
     <app-bar-chart
-    [elements]="summary">
+      [elements]="summary">
     </app-bar-chart>
   </div>
 </div>
@@ -86,7 +86,8 @@
 <div class="col-flex-box item-center-box">
   <div class="result-content table-box">
     <app-result-table
-      [results]="classResults.get(selectedClass.name)|objectListFilter:'student':selectedStudent">
+      [results]="classResults.get(selectedClass.name)
+      |objectListFilter:'student':selectedStudent|dateRangeFilter: fromDate: toDate">
     </app-result-table>
   </div>
 </div>

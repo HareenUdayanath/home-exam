@@ -14,7 +14,9 @@ export enum Level {
   UNASSIGNED = 'Unassigned',
 }
 
-export class Constant {
 
+
+export class Constant {
+  public static MONTHS_STRINGS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 }
 
