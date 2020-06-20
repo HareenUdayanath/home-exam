@@ -1,0 +1,63 @@
+<mat-table [dataSource]="results" class="mat-elevation-z8">
+  <!-- Date Column -->
+  <ng-container matColumnDef="date">
+    <mat-header-cell *matHeaderCellDef style="background-color: #E8E8E8">
+      DATE COMPLETED
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+  </ng-container>
+
+  <!-- Content Column -->
+  <ng-container matColumnDef="content">
+    <mat-header-cell *matHeaderCellDef style="background-color: #E8E8E8">
+      CONTENT
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      {{element.content}}
+    </mat-cell>
+  </ng-container>
+
+  <!-- Type Column -->
+  <ng-container matColumnDef="type">
+    <mat-header-cell *matHeaderCellDef style="background-color: #E8E8E8">
+      TYPE
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      {{element.type}}
+    </mat-cell>
+  </ng-container>
+
+  <!-- Skill Column -->
+  <ng-container matColumnDef="skill">
+    <mat-header-cell *matHeaderCellDef style="background-color: #E8E8E8">
+      SKILL
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.skill}} </mat-cell>
+  </ng-container>
+
+  <!-- Result Column -->
+  <ng-container matColumnDef="result">
+    <mat-header-cell *matHeaderCellDef style="background-color: #E8E8E8">
+      RESULT
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element" style="color: {{element.color}}">
+      {{element.result}}%
+    </mat-cell>
+  </ng-container>
+
+  <!-- Time Column -->
+  <ng-container matColumnDef="time">
+    <mat-header-cell *matHeaderCellDef style="background-color: #E8E8E8">
+      TIME_SPENT
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.time}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+

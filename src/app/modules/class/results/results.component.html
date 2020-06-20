@@ -1,0 +1,90 @@
+<!--filters-->
+<div class="item-center-box">
+  <div class="item-spaced-box">
+    <div class="labeled-filter-box">
+      <mat-label>Class</mat-label>
+      <mat-form-field appearance="outline">
+        <mat-select [(value)]="selectedClass">
+          <mat-option value="{{allDummyClass}}">
+            {{allDummyClass.name}}
+          </mat-option>
+          <mat-option *ngFor="let classRoom of classes" [value]="classRoom">
+            {{classRoom.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="labeled-filter-box">
+      <mat-label>Student</mat-label>
+      <mat-form-field appearance="outline">
+        <mat-select [(value)]="selectedStudent">
+          <mat-option value="">
+            All
+          </mat-option>
+          <mat-option *ngFor="let student of selectedClass?.students" [value]="student">
+            {{student}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="row-flex-box">
+      <div class="labeled-filter-box">
+        <mat-label>Date Range</mat-label>
+        <mat-form-field appearance="outline">
+          <input
+            [(ngModel)]="fromDate"
+            matInput
+            [matDatepicker]="fromPicker">
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="fromPicker">
+          </mat-datepicker-toggle>
+          <mat-datepicker
+            #fromPicker>
+          </mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="gray-text item-center-box">
+        <span>to</span>
+      </div>
+      <div class="filter-box">
+        <mat-form-field appearance="outline">
+          <input
+            [(ngModel)]="toDate"
+            matInput
+            [matDatepicker]="toPicker">
+          <mat-datepicker-toggle
+            matSuffix [for]="toPicker">
+          </mat-datepicker-toggle>
+          <mat-datepicker
+            #toPicker>
+          </mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--chart-->
+<div class="col-flex-box item-center-box">
+  <div class="gray-text">overall results for the period:</div>
+  <div class="date-range">
+    <div *ngIf="fromDate && toDate">
+      {{fromDate.getDate()}} {{monthsString[fromDate.getMonth()]}}
+      - {{toDate.getDate()}} {{monthsString[toDate.getMonth()]}}
+    </div>
+  </div>
+  <div class="result-content">
+    <app-bar-chart
+    [elements]="summary">
+    </app-bar-chart>
+  </div>
+</div>
+
+<div class="col-flex-box item-center-box">
+  <div class="result-content table-box">
+    <app-result-table
+      [results]="classResults.get(selectedClass.name)|objectListFilter:'student':selectedStudent">
+    </app-result-table>
+  </div>
+</div>
