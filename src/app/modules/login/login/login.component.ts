@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserServiceHandlerService } from '../../../services/service-handler/user-service-handler/user-service-handler.service';
-import { User } from '../../../shared/model/user';
+import { UserModel } from '../../../shared/models/user/user.model';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
 
-  user: User;
+  user: UserModel;
 
   constructor(
     private userServiceHandler: UserServiceHandlerService,

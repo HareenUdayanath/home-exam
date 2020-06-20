@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserServiceHandlerService } from '../../../services/service-handler/user-service-handler/user-service-handler.service';
-import { User } from '../../../shared/model/user';
+import { UserModel } from '../../../shared/models/user/user.model';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,12 +9,12 @@ import { User } from '../../../shared/model/user';
 })
 export class SignUpComponent implements OnInit {
 
-  user: User;
+  user: UserModel;
 
   constructor(
     private userServiceHandler: UserServiceHandlerService
   ) {
-    this.user = new User();
+    this.user = new UserModel();
   }
 
   ngOnInit(): void {
