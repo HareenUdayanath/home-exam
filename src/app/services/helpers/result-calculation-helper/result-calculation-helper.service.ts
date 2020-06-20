@@ -86,7 +86,7 @@ export class ResultCalculationHelperService {
       });
 
       levelMap.forEach((value, key) => {
-        value.percentage = (value.count / total) * 100;
+        value.percentage = Number(((value.count / total) * 100).toFixed(2));
         summary.push(value);
       });
     }

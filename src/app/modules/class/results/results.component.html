@@ -7,9 +7,6 @@
         <mat-select
           (selectionChange)="setSummary()"
           [(value)]="selectedClass">
-          <mat-option value="{{allDummyClass}}">
-            {{allDummyClass.name}}
-          </mat-option>
           <mat-option *ngFor="let classRoom of classes" [value]="classRoom">
             {{classRoom.name}}
           </mat-option>
@@ -76,7 +73,7 @@
       - {{toDate.getDate()}} {{monthsString[toDate.getMonth()]}}
     </div>
   </div>
-  <div class="result-content">
+  <div class="bar-chart">
     <app-bar-chart
       [elements]="summary">
     </app-bar-chart>
@@ -84,10 +81,14 @@
 </div>
 
 <div class="col-flex-box item-center-box">
-  <div class="result-content table-box">
+  <div class="table-box">
     <app-result-table
+      *ngIf="(classResults.get(selectedClass.name)
+      |objectListFilter:'student':selectedStudent|dateRangeFilter: fromDate: toDate)&&(classResults.get(selectedClass.name)
+      |objectListFilter:'student':selectedStudent|dateRangeFilter: fromDate: toDate).length>0;else no_results"
       [results]="classResults.get(selectedClass.name)
       |objectListFilter:'student':selectedStudent|dateRangeFilter: fromDate: toDate">
     </app-result-table>
+    <ng-template #no_results>No results found...</ng-template>
   </div>
 </div>

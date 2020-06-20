@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ClassStore } from '../../resources/class-store';
@@ -41,6 +42,7 @@ import { ResultTableComponent } from './result-table/result-table.component';
     MatNativeDateModule,
     MatIconModule,
     MatTableModule,
+    MatSortModule,
     ServiceHandlerModule,
     BarChartModule,
     PipesModule,

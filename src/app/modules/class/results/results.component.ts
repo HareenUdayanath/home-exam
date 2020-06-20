@@ -28,7 +28,7 @@ export class ResultsComponent implements OnInit {
   public toDate: Date;
 
   public allDummyClass: ClassModel;
-  public allDummyClassName = 'ALL';
+  public allDummyClassName = 'All';
 
   public studentClass: Map<string, string>;
   public classResults: Map<string, Array<AttemptResultModel>>;
@@ -74,6 +74,8 @@ export class ResultsComponent implements OnInit {
           this.studentClass.set(student, classRoom.name);
         });
       });
+
+      this.classes.unshift(this.allDummyClass); // putting all class option
       this.dataTracker.next(this.dataTracker.getValue() + 1);
     });
   }
@@ -110,6 +112,7 @@ export class ResultsComponent implements OnInit {
       }
       this.classResults.get(className).push(attemptResult);
     });
+    this.summary = this.resultCalculator.getSummary(this.classResults.get(this.selectedClass.name));
   }
 
 }

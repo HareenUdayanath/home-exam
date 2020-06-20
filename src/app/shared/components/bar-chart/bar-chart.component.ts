@@ -36,10 +36,12 @@ export class BarChartComponent implements OnInit, OnChanges {
   }
 
   prepareElements() {
-    const totalWidth = this.container.nativeElement.offsetWidth;
-    this.elements.forEach(boxElement => {
-      boxElement.width = totalWidth * (boxElement.percentage / 100);
-    });
+    if (this.container) {
+      const totalWidth = this.container.nativeElement.offsetWidth;
+      this.elements.forEach(boxElement => {
+        boxElement.width = totalWidth * (boxElement.percentage / 100);
+      });
+    }
   }
 
 }
