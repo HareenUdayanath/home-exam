@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
+import { BarChartElement } from '../../../shared/components/bar-chart/bar-chart-element.model';
 import { ActivityModel } from '../../../shared/models/class/activity.model';
 import { AttemptResultModel } from '../../../shared/models/class/attempt-result.model';
-import { LevelColorCode } from '../../../shared/models/constant';
+import { Level, LevelColorCode } from '../../../shared/models/constant';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,7 @@ export class ResultCalculationHelperService {
       attemptResult.type = activity.type;
       attemptResult.time = activity.time;
       attemptResult.color = this.getLevelColor(attemptResult.result);
+      attemptResult.level = this.getLevel(attemptResult.result);
       return attemptResult;
     });
 
@@ -50,8 +52,45 @@ export class ResultCalculationHelperService {
     }
   }
 
-  public getSummary() {
+  public getLevel(result: number): string {
+    switch (true) {
+      case (result < 60):
+        return Level.WEAK;
+      case (result < 80):
+        return Level.OK;
+      case (result < 90):
+        return Level.GOOD;
+      default:
+        return Level.EXCELLENT;
+    }
+  }
 
+  public getSummary(results: Array<AttemptResultModel>): Array<BarChartElement> {
+    const summary = [];
+
+    if (results) {
+      const levelMap = new Map<string, BarChartElement>();
+      let total = 0;
+
+      results.forEach(result => {
+        if (!levelMap.has(result.level)) {
+          const element = new BarChartElement();
+          element.title = result.level;
+          element.color = result.color;
+          element.width = 0;
+          element.count = 0;
+          levelMap.set(result.level, element);
+        }
+        levelMap.get(result.level).count = levelMap.get(result.level).count + 1;
+        total = total + 1;
+      });
+
+      levelMap.forEach((value, key) => {
+        value.percentage = (value.count / total) * 100;
+        summary.push(value);
+      });
+    }
+    return summary;
   }
 
 }

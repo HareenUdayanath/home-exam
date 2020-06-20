@@ -7,10 +7,11 @@ export enum LevelColorCode {
 }
 
 export enum Level {
-  WEAK,
-  OK,
-  GOOD,
-  EXCELLENT
+  WEAK = 'Weak',
+  OK = 'OK',
+  GOOD = 'Good',
+  EXCELLENT = 'Excellent',
+  UNASSIGNED = 'Unassigned',
 }
 
 export class Constant {

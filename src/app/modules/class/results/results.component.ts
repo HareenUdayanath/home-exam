@@ -40,32 +40,6 @@ export class ResultsComponent implements OnInit {
     private classServiceHandler: ClassServiceHandlerService,
     private resultCalculator: ResultCalculationHelperService
   ) {
-    this.summary = [
-      {
-        title: 'Unassigned',
-        percentage: 16,
-        color: '#D8D8D8',
-        width: 0
-      },
-      {
-        title: 'Weak',
-        percentage: 18,
-        color: '#B40404',
-        width: 0
-      },
-      {
-        title: 'OK',
-        percentage: 35,
-        color: '#FF8000',
-        width: 0
-      },
-      {
-        title: 'Excellent',
-        percentage: 28,
-        color: '#01DF01',
-        width: 0
-      }
-    ];
   }
 
   ngOnInit(): void {
@@ -80,6 +54,9 @@ export class ResultsComponent implements OnInit {
 
     this.loadClasses();
     this.loadActivities();
+
+    this.summary = this.resultCalculator.getSummary(this.classResults.get(this.selectedClass.name));
+
     this.dataTracker.subscribe(count => {
       if (count === 2) {
         this.prepareClassResults();
@@ -106,12 +83,16 @@ export class ResultsComponent implements OnInit {
     });
   }
 
-  prepareActivities(activities: ActivityModel[]) {
+  prepareActivities(activities: Array<ActivityModel>) {
     activities.forEach(activity => {
       const newResults = this.resultCalculator.getResultsFromActivity(activity);
       this.attemptResults = this.attemptResults.concat(newResults);
     });
     this.dataTracker.next(this.dataTracker.getValue() + 1);
+  }
+
+  setSummary() {
+    this.summary = this.resultCalculator.getSummary(this.classResults.get(this.selectedClass.name));
   }
 
   /**

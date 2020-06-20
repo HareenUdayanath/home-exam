@@ -4,7 +4,9 @@
     <div class="labeled-filter-box">
       <mat-label>Class</mat-label>
       <mat-form-field appearance="outline">
-        <mat-select [(value)]="selectedClass">
+        <mat-select
+          (selectionChange)="setSummary()"
+          [(value)]="selectedClass">
           <mat-option value="{{allDummyClass}}">
             {{allDummyClass.name}}
           </mat-option>

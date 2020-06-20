@@ -7,4 +7,5 @@ export class AttemptResultModel {
   skill: string;
   type: string;
   color: string;
+  level: string;
 }

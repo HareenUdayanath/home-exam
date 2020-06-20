@@ -1,4 +1,13 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import { BarChartElement } from './bar-chart-element.model';
 
 @Component({
@@ -6,7 +15,7 @@ import { BarChartElement } from './bar-chart-element.model';
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.scss']
 })
-export class BarChartComponent implements OnInit, AfterViewInit {
+export class BarChartComponent implements OnInit, OnChanges {
 
   @Input() elements: Array<BarChartElement>;
   @Input() height = '15px';
@@ -22,7 +31,7 @@ export class BarChartComponent implements OnInit, AfterViewInit {
 
   }
 
-  public ngAfterViewInit(): void {
+  public ngOnChanges(changes: SimpleChanges): void {
     this.prepareElements();
   }
 
