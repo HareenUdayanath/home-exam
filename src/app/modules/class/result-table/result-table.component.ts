@@ -31,30 +31,6 @@ export class ResultTableComponent implements OnInit, AfterViewInit {
     this.sortedData.sort = this.sort;
   }
 
-  sortData(sort: Sort) {
-    const data = this.results.slice();
-    if (!sort.active || sort.direction === '') {
-      this.sortedData = data;
-      return;
-    }
-
-    this.sortedData = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'date':
-          return this.compareDate(a.date, b.date, isAsc);
-        case 'type':
-          return this.compare(a.type, b.type, isAsc);
-        case 'result':
-          return this.compare(a.result, b.result, isAsc);
-        case 'time':
-          return this.compare(a.time, b.time, isAsc);
-        default:
-          return 0;
-      }
-    });
-  }
-
   compareDate(a: string, b: string, isAsc: boolean) {
     return (new Date(a) < new Date(b) ? -1 : 1) * (isAsc ? 1 : -1);
   }
