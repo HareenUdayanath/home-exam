@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AttemptResultModel } from '../../../shared/models/class/attempt-result.model';
@@ -8,7 +8,7 @@ import { AttemptResultModel } from '../../../shared/models/class/attempt-result.
   templateUrl: './result-table.component.html',
   styleUrls: ['./result-table.component.scss']
 })
-export class ResultTableComponent implements OnInit, OnChanges {
+export class ResultTableComponent implements OnInit, OnChanges, AfterViewInit {
 
   @Input() results: AttemptResultModel[];
 
@@ -25,7 +25,15 @@ export class ResultTableComponent implements OnInit, OnChanges {
     this.sortedData = new MatTableDataSource(this.results);
   }
 
+  public ngAfterViewInit(): void {
+    this.settingSorters();
+  }
+
   public ngOnChanges(changes: SimpleChanges): void {
+    this.settingSorters();
+  }
+
+  private settingSorters() {
     this.sortedData = new MatTableDataSource(this.results);
     this.sortedData.sort = this.sort;
   }

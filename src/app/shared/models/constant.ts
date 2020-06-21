@@ -2,7 +2,7 @@ export enum LevelColorCode {
   UNASSIGNED = '#D8D8D8',
   WEAK = '#B40404',
   OK = '#FF8000',
-  GOOD = '#FFFF00',
+  GOOD = '#EFC93D',
   EXCELLENT = '#01DF01'
 }
 
