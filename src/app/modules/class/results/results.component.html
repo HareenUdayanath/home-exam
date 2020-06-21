@@ -2,68 +2,66 @@
   [heading]="'Reporting - Student Snapshot'"></app-header>
 <!--filters-->
 <div class="item-center-box">
-  <div class="item-spaced-box">
+  <div class="labeled-filter-box">
+    <mat-label>Class</mat-label>
+    <mat-form-field appearance="outline">
+      <mat-select
+        (selectionChange)="setSummary();selectedStudent=''"
+        [(value)]="selectedClass">
+        <mat-option *ngFor="let classRoom of classes" [value]="classRoom">
+          {{classRoom.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="labeled-filter-box">
+    <mat-label>Student</mat-label>
+    <mat-form-field appearance="outline">
+      <mat-select [(value)]="selectedStudent">
+        <mat-option value="">
+          All
+        </mat-option>
+        <mat-option *ngFor="let student of selectedClass?.students" [value]="student">
+          {{student}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="row-flex-box">
     <div class="labeled-filter-box">
-      <mat-label>Class</mat-label>
+      <mat-label>Date Range</mat-label>
       <mat-form-field appearance="outline">
-        <mat-select
-          (selectionChange)="setSummary();selectedStudent=''"
-          [(value)]="selectedClass">
-          <mat-option *ngFor="let classRoom of classes" [value]="classRoom">
-            {{classRoom.name}}
-          </mat-option>
-        </mat-select>
+        <input
+          [ngModel]="fromDate"
+          (ngModelChange)="fromDate=$event;setSummary()"
+          matInput
+          [matDatepicker]="fromPicker">
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="fromPicker">
+        </mat-datepicker-toggle>
+        <mat-datepicker
+          #fromPicker>
+        </mat-datepicker>
       </mat-form-field>
     </div>
-    <div class="labeled-filter-box">
-      <mat-label>Student</mat-label>
-      <mat-form-field appearance="outline">
-        <mat-select [(value)]="selectedStudent">
-          <mat-option value="">
-            All
-          </mat-option>
-          <mat-option *ngFor="let student of selectedClass?.students" [value]="student">
-            {{student}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+    <div class="gray-text item-center-box">
+      <span>to</span>
     </div>
-    <div class="row-flex-box">
-      <div class="labeled-filter-box">
-        <mat-label>Date Range</mat-label>
-        <mat-form-field appearance="outline">
-          <input
-            [ngModel]="fromDate"
-            (ngModelChange)="fromDate=$event;setSummary()"
-            matInput
-            [matDatepicker]="fromPicker">
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="fromPicker">
-          </mat-datepicker-toggle>
-          <mat-datepicker
-            #fromPicker>
-          </mat-datepicker>
-        </mat-form-field>
-      </div>
-      <div class="gray-text item-center-box">
-        <span>to</span>
-      </div>
-      <div class="filter-box">
-        <mat-form-field appearance="outline">
-          <input
-            [ngModel]="toDate"
-            (ngModelChange)="toDate=$event;setSummary()"
-            matInput
-            [matDatepicker]="toPicker">
-          <mat-datepicker-toggle
-            matSuffix [for]="toPicker">
-          </mat-datepicker-toggle>
-          <mat-datepicker
-            #toPicker>
-          </mat-datepicker>
-        </mat-form-field>
-      </div>
+    <div class="filter-box">
+      <mat-form-field appearance="outline">
+        <input
+          [ngModel]="toDate"
+          (ngModelChange)="toDate=$event;setSummary()"
+          matInput
+          [matDatepicker]="toPicker">
+        <mat-datepicker-toggle
+          matSuffix [for]="toPicker">
+        </mat-datepicker-toggle>
+        <mat-datepicker
+          #toPicker>
+        </mat-datepicker>
+      </mat-form-field>
     </div>
   </div>
 </div>
