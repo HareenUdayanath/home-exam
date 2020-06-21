@@ -10,8 +10,8 @@ import { ClassModel } from '../../../shared/models/class/class.model';
 })
 export class ClassServiceHandlerService {
 
-  private LOAD_CLASSES_EP = 'resources/classes';
-  private LOAD_ACTIVITIES_EP = 'resources/activities';
+  private LOAD_CLASSES_EP = 'resources/classes'; // refers to in-memory-web-api data source
+  private LOAD_ACTIVITIES_EP = 'resources/activities'; // refers to in-memory-web-api data source
 
   constructor(private http: HttpClient) { }
 

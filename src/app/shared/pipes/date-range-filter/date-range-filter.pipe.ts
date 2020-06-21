@@ -12,7 +12,8 @@ export class DateRangeFilterPipe implements PipeTransform {
     }
 
     return items.filter(item => {
-      const date = new Date(item.date);
+      const dateStringArr = item.date.split('/').map(str => Number(str));
+      const date = new Date(dateStringArr[2], dateStringArr[1], dateStringArr[0]);
       return date >= from && date <= to;
     });
 

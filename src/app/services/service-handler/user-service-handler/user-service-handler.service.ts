@@ -9,7 +9,7 @@ import { UserModel } from '../../../shared/models/user/user.model';
 })
 export class UserServiceHandlerService {
 
-  private LOAD_USER_EP = 'resources/users';
+  private LOAD_USER_EP = 'resources/users'; // refers to in-memory-web-api data source
 
   constructor(private http: HttpClient) { }
 

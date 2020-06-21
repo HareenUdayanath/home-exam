@@ -14,9 +14,8 @@ export class ResultTableComponent implements OnInit, OnChanges {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  sortedData: MatTableDataSource<AttemptResultModel>;
-
-  displayedColumns: string[] = ['date', 'content', 'type', 'skill', 'result', 'time'];
+  public sortedData: MatTableDataSource<AttemptResultModel>;
+  public displayedColumns: string[] = ['date', 'content', 'type', 'skill', 'result', 'time'];
 
   constructor() {
 
