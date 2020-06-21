@@ -31,7 +31,8 @@
         <mat-label>Date Range</mat-label>
         <mat-form-field appearance="outline">
           <input
-            [(ngModel)]="fromDate"
+            [ngModel]="fromDate"
+            (ngModelChange)="fromDate=$event;setSummary()"
             matInput
             [matDatepicker]="fromPicker">
           <mat-datepicker-toggle
@@ -49,7 +50,8 @@
       <div class="filter-box">
         <mat-form-field appearance="outline">
           <input
-            [(ngModel)]="toDate"
+            [ngModel]="toDate"
+            (ngModelChange)="toDate=$event;setSummary()"
             matInput
             [matDatepicker]="toPicker">
           <mat-datepicker-toggle
@@ -84,8 +86,7 @@
   <div class="table-box">
     <app-result-table
       *ngIf="(classResults.get(selectedClass.name)
-      |objectListFilter:'student':selectedStudent|dateRangeFilter: fromDate: toDate)&&(classResults.get(selectedClass.name)
-      |objectListFilter:'student':selectedStudent|dateRangeFilter: fromDate: toDate).length>0;else no_results"
+      |objectListFilter:'student':selectedStudent|dateRangeFilter: fromDate: toDate)?.length>0;else no_results"
       [results]="classResults.get(selectedClass.name)
       |objectListFilter:'student':selectedStudent|dateRangeFilter: fromDate: toDate">
     </app-result-table>

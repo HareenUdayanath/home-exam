@@ -7,6 +7,7 @@ import { ActivityModel } from '../../../shared/models/class/activity.model';
 import { AttemptResultModel } from '../../../shared/models/class/attempt-result.model';
 import { ClassModel } from '../../../shared/models/class/class.model';
 import { Constant } from '../../../shared/models/constant';
+import { DateRangeFilterPipe } from '../../../shared/pipes/date-range-filter/date-range-filter.pipe';
 
 @Component({
   selector: 'app-results',
@@ -16,10 +17,10 @@ import { Constant } from '../../../shared/models/constant';
 })
 export class ResultsComponent implements OnInit {
 
-  monthsString = Constant.MONTHS_STRINGS;
+  public monthsString = Constant.MONTHS_STRINGS;
 
-  classes: Array<ClassModel>;
-  attemptResults: Array<AttemptResultModel>;
+  public classes: Array<ClassModel>;
+  public attemptResults: Array<AttemptResultModel>;
 
   // Filter references
   public selectedClass: ClassModel;
@@ -30,16 +31,21 @@ export class ResultsComponent implements OnInit {
   public allDummyClass: ClassModel;
   public allDummyClassName = 'All';
 
+  // Map maintaining classed for relevant students
   public studentClass: Map<string, string>;
+  // Map maintaining results for relevant classes
   public classResults: Map<string, Array<AttemptResultModel>>;
 
   public summary: Array<BarChartElement>;
 
+  // Tracker is used to do operation which should be performed after all data are loaded
+  // In this case there are two data sources to be loaded
   private dataTracker = new BehaviorSubject<number>(0);
 
   constructor(
     private classServiceHandler: ClassServiceHandlerService,
-    private resultCalculator: ResultCalculationHelperService
+    private resultCalculator: ResultCalculationHelperService,
+    private dateRangeFilter: DateRangeFilterPipe
   ) {
   }
 
@@ -55,8 +61,7 @@ export class ResultsComponent implements OnInit {
 
     this.loadClasses();
     this.loadActivities();
-
-    this.summary = this.resultCalculator.getSummary(this.classResults.get(this.selectedClass.name));
+    this.setSummary();
 
     this.dataTracker.subscribe(count => {
       if (count === 2) {
@@ -86,6 +91,9 @@ export class ResultsComponent implements OnInit {
     });
   }
 
+  /**
+   * Setup Attempts results from activities
+   */
   prepareActivities(activities: Array<ActivityModel>) {
     activities.forEach(activity => {
       const newResults = this.resultCalculator.getResultsFromActivity(activity);
@@ -94,8 +102,15 @@ export class ResultsComponent implements OnInit {
     this.dataTracker.next(this.dataTracker.getValue() + 1);
   }
 
+  /**
+   * Setting summary elements need for the summary bar chart
+   */
   setSummary() {
-    this.summary = this.resultCalculator.getSummary(this.classResults.get(this.selectedClass.name));
+    // Filter using class
+    let filteredResults = this.classResults.get(this.selectedClass.name);
+    // Filter using date range
+    filteredResults = this.dateRangeFilter.transform(filteredResults, this.fromDate, this.toDate);
+    this.summary = this.resultCalculator.getSummary(filteredResults);
   }
 
   /**
@@ -112,7 +127,7 @@ export class ResultsComponent implements OnInit {
       }
       this.classResults.get(className).push(attemptResult);
     });
-    this.summary = this.resultCalculator.getSummary(this.classResults.get(this.selectedClass.name));
+    this.setSummary();
   }
 
 }

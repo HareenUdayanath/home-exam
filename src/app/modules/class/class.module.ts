@@ -17,6 +17,7 @@ import { ClassStore } from '../../resources/class-store';
 import { ResultCalculationHelperService } from '../../services/helpers/result-calculation-helper/result-calculation-helper.service';
 import { ServiceHandlerModule } from '../../services/service-handler/service-handler.module';
 import { BarChartModule } from '../../shared/components/bar-chart/bar-chart.module';
+import { DateRangeFilterPipe } from '../../shared/pipes/date-range-filter/date-range-filter.pipe';
 import { PipesModule } from '../../shared/pipes/pipes.module';
 
 import { ClassRoutingModule } from './class-routing.module';
@@ -49,7 +50,8 @@ import { ResultTableComponent } from './result-table/result-table.component';
     HttpClientInMemoryWebApiModule.forRoot(ClassStore)
   ],
   providers: [
-    ResultCalculationHelperService
+    ResultCalculationHelperService,
+    DateRangeFilterPipe
   ]
 })
 export class ClassModule {}
