@@ -1,34 +1,47 @@
 <div class="main-div">
-  <mat-card class="example-card">
+  <form (ngSubmit)="onSignUp()" #signUp="ngForm">
+    <mat-card class="example-card">
 
-    <mat-card-title>Sign-up</mat-card-title>
+      <mat-card-title>Sign-up</mat-card-title>
 
-    <mat-card-content>
-      <mat-error *ngIf="error">{{error}}</mat-error>
-      <mat-form-field>
-        <input
-          required
-          [(ngModel)]="user.name"
-          matInput
-          placeholder="username">
-      </mat-form-field>
-      <br/>
+      <mat-card-content>
+        <mat-error *ngIf="error">{{error}}</mat-error>
+        <mat-form-field>
+          <input
+            required
+            [(ngModel)]="user.name"
+            matInput
+            #usernameControl="ngModel"
+            name="username"
+            placeholder="username">
+          <mat-error *ngIf="usernameControl?.invalid">
+            {{getError(usernameControl.control, usernameControl.name)}}
+          </mat-error>
+        </mat-form-field>
+        <br/>
 
-      <mat-form-field>
-        <input
-          required
-          [(ngModel)]="user.password"
-          matInput
-          placeholder="password">
-      </mat-form-field>
-      <br/>
-    </mat-card-content>
-    <mat-card-actions>
-      <button
-        (click)="onSignUp()"
-        mat-raised-button
-        color="primary">Sign-up
-      </button>
-    </mat-card-actions>
-  </mat-card>
+        <mat-form-field>
+          <input
+            required
+            [(ngModel)]="user.password"
+            matInput
+            #passwordControl="ngModel"
+            name="password"
+            placeholder="password">
+          <mat-error *ngIf="passwordControl?.invalid">
+            {{getError(passwordControl.control, passwordControl.name)}}
+          </mat-error>
+        </mat-form-field>
+        <br/>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          type="submit"
+          [disabled]="!signUp.form.valid"
+          mat-raised-button
+          color="primary">Sign-up
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
 </div>

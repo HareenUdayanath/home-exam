@@ -1,44 +1,51 @@
 <div class="main-div">
-  <mat-card class="example-card">
+  <form (ngSubmit)="onLogin()" #login="ngForm">
+    <mat-card class="example-card">
 
-    <mat-card-title>Login</mat-card-title>
+      <mat-card-title>Login</mat-card-title>
 
-    <mat-card-content>
-      <mat-error *ngIf="error">{{error}}</mat-error>
-      <mat-form-field>
-        <input
-          required
-          [(ngModel)]="username"
-          matInput
-          placeholder="username">
-      </mat-form-field>
-      <br/>
+      <mat-card-content>
+        <mat-error *ngIf="error">{{error}}</mat-error>
+        <mat-form-field>
+          <input
+            required
+            [(ngModel)]="username"
+            matInput
+            #usernameControl="ngModel"
+            name="username"
+            placeholder="username">
+          <mat-error *ngIf="usernameControl?.invalid">
+            {{getError(usernameControl.control, usernameControl.name)}}
+          </mat-error>
+        </mat-form-field>
+        <br/>
 
-      <mat-form-field>
-        <input
-          required
-          [(ngModel)]="password"
-          matInput
-          placeholder="password">
-      </mat-form-field>
-      <br/>
-    </mat-card-content>
-    <mat-card-actions>
-      <button
-        (click)="onLogin()"
-        mat-raised-button
-        color="primary">Login
-      </button>
-    </mat-card-actions>
-  </mat-card>
-  <mat-card class="name-card">
-    <mat-card-title *ngIf="user">{{user?.name}}</mat-card-title>
-    <mat-card-actions>
-      <button
-        (click)="onSingUp()"
-        mat-raised-button
-        color="primary">Sign-up
-      </button>
-    </mat-card-actions>
-  </mat-card>
+        <mat-form-field>
+          <input
+            required
+            [(ngModel)]="password"
+            matInput
+            #passwordControl="ngModel"
+            name="password"
+            placeholder="password">
+          <mat-error *ngIf="passwordControl?.invalid">
+            {{getError(passwordControl.control, passwordControl.name)}}
+          </mat-error>
+        </mat-form-field>
+        <br/>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          type="submit"
+          [disabled]="!login.form.valid"
+          mat-raised-button
+          color="primary">
+          Login
+        </button>
+      </mat-card-actions>
+      <div>
+        <button (click)="onSingUp()" mat-button color="primary">Sign-up</button>
+      </div>
+    </mat-card>
+  </form>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserServiceHandlerService } from '../../../services/service-handler/user-service-handler/user-service-handler.service';
 import { UserModel } from '../../../shared/models/user/user.model';
@@ -42,5 +43,18 @@ export class LoginComponent implements OnInit {
   onSingUp() {
     this.router.navigate(['sign-up'], {relativeTo: this.route});
   }
+
+  getError(formControl: FormControl, name: string) {
+    switch (name) {
+      case 'password':
+        return formControl.hasError('required') ? 'Password required' : 'ERROR';
+      case 'username':
+        return formControl.hasError('required') ? 'Username required' : 'ERROR';
+      default:
+        return 'Error';
+    }
+
+  }
+
 
 }

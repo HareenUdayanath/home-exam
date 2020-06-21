@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserModel } from '../../../shared/models/user/user.model';
 import { AuthorizationService } from '../../../shared/security/authorization/authorization.service';
@@ -31,6 +32,18 @@ export class SignUpComponent implements OnInit {
         .catch(reason => {
           this.error = reason;
         });
+  }
+
+  getError(formControl: FormControl, name: string) {
+    switch (name) {
+      case 'password':
+        return formControl.hasError('required') ? 'Password required' : 'ERROR';
+      case 'username':
+        return formControl.hasError('required') ? 'Username required' : 'ERROR';
+      default:
+        return 'Error';
+    }
+
   }
 
 }
