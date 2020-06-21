@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserServiceHandlerService } from '../../../services/service-handler/user-service-handler/user-service-handler.service';
 import { UserModel } from '../../../shared/models/user/user.model';
@@ -11,6 +11,8 @@ import { AuthorizationService } from '../../../shared/security/authorization/aut
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
+  @ViewChild('login') form: NgForm;
 
   username: string;
   password: string;
@@ -55,6 +57,5 @@ export class LoginComponent implements OnInit {
     }
 
   }
-
 
 }

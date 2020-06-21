@@ -1,9 +1,7 @@
 <div class="main-div">
   <form (ngSubmit)="onLogin()" #login="ngForm">
     <mat-card class="example-card">
-
       <mat-card-title>Login</mat-card-title>
-
       <mat-card-content>
         <mat-error *ngIf="error">{{error}}</mat-error>
         <mat-form-field>
@@ -13,6 +11,7 @@
             matInput
             #usernameControl="ngModel"
             name="username"
+            class="form-control"
             placeholder="username">
           <mat-error *ngIf="usernameControl?.invalid">
             {{getError(usernameControl.control, usernameControl.name)}}
@@ -26,6 +25,7 @@
             [(ngModel)]="password"
             matInput
             #passwordControl="ngModel"
+            class="form-control"
             name="password"
             placeholder="password">
           <mat-error *ngIf="passwordControl?.invalid">

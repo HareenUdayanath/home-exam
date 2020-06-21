@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ActivityModel } from '../../../shared/models/class/activity.model';
 import { ClassModel } from '../../../shared/models/class/class.model';
-import { UserModel } from '../../../shared/models/user/user.model';
 
 @Injectable({
   providedIn: 'root'
