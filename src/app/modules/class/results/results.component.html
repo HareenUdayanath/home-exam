@@ -1,5 +1,5 @@
 <app-header
-[heading]="'Reporting - Student Snapshot'"></app-header>
+  [heading]="'Reporting - Student Snapshot'"></app-header>
 <!--filters-->
 <div class="item-center-box">
   <div class="item-spaced-box">
@@ -7,7 +7,7 @@
       <mat-label>Class</mat-label>
       <mat-form-field appearance="outline">
         <mat-select
-          (selectionChange)="setSummary()"
+          (selectionChange)="setSummary();selectedStudent=''"
           [(value)]="selectedClass">
           <mat-option *ngFor="let classRoom of classes" [value]="classRoom">
             {{classRoom.name}}
