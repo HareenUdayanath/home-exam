@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserModel } from '../../../shared/models/user/user.model';
 import { AuthorizationService } from '../../../shared/security/authorization/authorization.service';
@@ -10,6 +10,8 @@ import { AuthorizationService } from '../../../shared/security/authorization/aut
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
+
+  @ViewChild('signUp') form: NgForm;
 
   user: UserModel;
   error = '';
