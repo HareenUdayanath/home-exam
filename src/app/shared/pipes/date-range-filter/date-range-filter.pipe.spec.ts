@@ -8,8 +8,8 @@ describe('DateRangeFilterPipe', () => {
   });
 
   it('filter dates list', () => {
-    const fromDate = new Date(2018, 10, 12);
-    const toDate = new Date(2018, 10, 22);
+    const fromDate = new Date(2018, 10 - 1, 12);
+    const toDate = new Date(2018, 10 - 1, 22);
 
     const list = [
       {date: '10/10/2018'},
