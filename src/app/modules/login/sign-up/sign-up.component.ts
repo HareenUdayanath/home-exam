@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserServiceHandlerService } from '../../../services/service-handler/user-service-handler/user-service-handler.service';
+import { Router } from '@angular/router';
 import { UserModel } from '../../../shared/models/user/user.model';
+import { AuthorizationService } from '../../../shared/security/authorization/authorization.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,9 +11,11 @@ import { UserModel } from '../../../shared/models/user/user.model';
 export class SignUpComponent implements OnInit {
 
   user: UserModel;
+  error = '';
 
   constructor(
-    private userServiceHandler: UserServiceHandlerService
+    private authorizationService: AuthorizationService,
+    private router: Router
   ) {
     this.user = new UserModel();
   }
@@ -20,8 +23,14 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onLogin() {
-    this.userServiceHandler.addUser(this.user).subscribe();
+  onSignUp() {
+    this.authorizationService.signUp(this.user)
+        .then(value => {
+          this.router.navigate(['/login']);
+        })
+        .catch(reason => {
+          this.error = reason;
+        });
   }
 
 }

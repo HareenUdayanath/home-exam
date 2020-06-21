@@ -17,8 +17,10 @@ import { ClassStore } from '../../resources/class-store';
 import { ResultCalculationHelperService } from '../../services/helpers/result-calculation-helper/result-calculation-helper.service';
 import { ServiceHandlerModule } from '../../services/service-handler/service-handler.module';
 import { BarChartModule } from '../../shared/components/bar-chart/bar-chart.module';
+import { HeaderModule } from '../../shared/components/header/header.module';
 import { DateRangeFilterPipe } from '../../shared/pipes/date-range-filter/date-range-filter.pipe';
 import { PipesModule } from '../../shared/pipes/pipes.module';
+import { SecurityModule } from '../../shared/security/security.module';
 
 import { ClassRoutingModule } from './class-routing.module';
 import { ResultsComponent } from './results/results.component';
@@ -47,6 +49,8 @@ import { ResultTableComponent } from './result-table/result-table.component';
     ServiceHandlerModule,
     BarChartModule,
     PipesModule,
+    SecurityModule,
+    HeaderModule,
     HttpClientInMemoryWebApiModule.forRoot(ClassStore)
   ],
   providers: [

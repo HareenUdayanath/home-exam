@@ -4,6 +4,7 @@
     <mat-card-title>Sign-up</mat-card-title>
 
     <mat-card-content>
+      <mat-error *ngIf="error">{{error}}</mat-error>
       <mat-form-field>
         <input
           required
@@ -24,13 +25,10 @@
     </mat-card-content>
     <mat-card-actions>
       <button
-        (click)="onLogin()"
+        (click)="onSignUp()"
         mat-raised-button
         color="primary">Sign-up
       </button>
     </mat-card-actions>
-  </mat-card>
-  <mat-card class="name-card">
-    <mat-card-title *ngIf="user">{{user?.name}}</mat-card-title>
   </mat-card>
 </div>

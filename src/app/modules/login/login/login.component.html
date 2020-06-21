@@ -4,6 +4,7 @@
     <mat-card-title>Login</mat-card-title>
 
     <mat-card-content>
+      <mat-error *ngIf="error">{{error}}</mat-error>
       <mat-form-field>
         <input
           required

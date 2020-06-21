@@ -9,6 +9,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { UserStore } from '../../resources/user-store';
 import { ServiceHandlerModule } from '../../services/service-handler/service-handler.module';
+import { SecurityModule } from '../../shared/security/security.module';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login/login.component';
@@ -29,6 +30,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     MatButtonModule,
     MatInputModule,
     ServiceHandlerModule,
+    SecurityModule,
     HttpClientInMemoryWebApiModule.forRoot(UserStore)
   ],
   exports: [

@@ -85,6 +85,7 @@ export class ResultsComponent implements OnInit {
     });
   }
 
+
   loadActivities() {
     this.classServiceHandler.getActivities().subscribe(activities => {
       this.prepareActivities(activities);
