@@ -9,12 +9,12 @@
 <br><br>
 <div class="bar-chart-identifier-container">
   <ng-container *ngFor="let element of elements">
-    <div>
+    <div class="bar-chart-identifier">
       <div appBoxElement
            [height]="idDimension"
            [width]="idDimension"
            [color]="element.color"></div>
-      <div>{{element.title}} ({{element.percentage}}%)</div>
+      <div class="bar-chart-identifier-text">{{element.title}} ({{element.percentage}}%)</div>
     </div>
   </ng-container>
 </div>
